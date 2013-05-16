@@ -13,7 +13,7 @@ hibernate {
 environments {
     development {
         dataSource {
-            dbCreate = "gtunes"
+            dbCreate = "create"
             url = "jdbc:mysql://localhost/gTunes"
             driverClassName = "com.mysql.jdbc.Driver"
             username = "root"
@@ -33,7 +33,7 @@ environments {
     }
     test {
         dataSource {
-            dbCreate = "gtunes"
+            dbCreate = "create"
             url = "jdbc:mysql://localhost/gTunes"
             driverClassName = "com.mysql.jdbc.Driver"
             username = "root"
@@ -53,7 +53,7 @@ environments {
     }
     production {
         dataSource {
-            dbCreate = "gtunes"
+            dbCreate = "create"
             url = "jdbc:mysql://localhost/gTunes"
             driverClassName = "com.mysql.jdbc.Driver"
             username = "root"
