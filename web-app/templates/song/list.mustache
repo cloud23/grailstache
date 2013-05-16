@@ -16,17 +16,18 @@
 		<div id="create-song" class="content scaffold-create" role="main">
 			<h1>Song Details</h1>
 			<div class="message" role="status"></div>
-			{{#song}}
-				<span>Title</span>
-				<span>{{title}}</span><br />
-				<span>Artist: </span>
-				<span>{{artist}}</span><br />
-				<span>Duration</span>
+			<span>Title</span>
+			<span>Artist</span>
+			<span>Duration</span><br />
+			{{#songs}}
+				<span>{{title}}</span>
+				<span>{{artist}}</span>
 				<span>{{duration}}</span><br />
-			{{\song}}
-			
-			<a href="../create">Add a new song</a>
-			<a href="../list">Go to song list</a>
+			{{/songs}}
+			{{^songs}}
+			  <span>Empty lists</span>
+			{{/songs}}
+			<a href="create">Add a new song</a>
 		</div>
 	</body>
 </html>
