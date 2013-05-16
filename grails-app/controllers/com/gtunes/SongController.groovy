@@ -72,33 +72,34 @@ class SongController {
 		render op
   }
 
-  def update(Long id, Long version) {
-      def songInstance = Song.get(id)
-      if (!songInstance) {
-          flash.message = message(code: 'default.not.found.message', args: [message(code: 'song.label', default: 'Song'), id])
-          redirect(action: "list")
-          return
-      }
+  def update() {
+    def songInstance = Song.get(params.id)
+    println(params.id)
+    if (!songInstance) {
+        flash.message = message(code: 'default.not.found.message', args: [message(code: 'song.label', default: 'Song'), params.id])
+        redirect(action: "list")
+        return
+    }
 
-      if (version != null) {
-          if (songInstance.version > version) {
-              songInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                        [message(code: 'song.label', default: 'Song')] as Object[],
-                        "Another user has updated this Song while you were editing")
-              render(view: "edit", model: [songInstance: songInstance])
-              return
-          }
-      }
+    if (songInstance.version != null) {
+        if (songInstance.version > params.version) {
+            songInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
+                      [message(code: 'song.label', default: 'Song')] as Object[],
+                      "Another user has updated this Song while you were editing")
+            redirect(action: "edit", id: songInstance.id)
+            return
+        }
+    }
 
-      songInstance.properties = params
+    songInstance.properties = params
 
-      if (!songInstance.save(flush: true)) {
-          render(view: "edit", model: [songInstance: songInstance])
-          return
-      }
+    if (!songInstance.save(flush: true)) {
+        redirect(action: "edit", id: songInstance.id)
+        return
+    }
 
-      flash.message = message(code: 'default.updated.message', args: [message(code: 'song.label', default: 'Song'), songInstance.id])
-      redirect(action: "show", id: songInstance.id)
+    flash.message = message(code: 'default.updated.message', args: [message(code: 'song.label', default: 'Song'), songInstance.id])
+    redirect(action: "show", id: songInstance.id)
   }
 
   def delete(Long id) {

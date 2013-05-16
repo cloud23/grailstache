@@ -13,7 +13,7 @@ hibernate {
 environments {
     development {
         dataSource {
-            dbCreate = "create"
+            dbCreate = "update"
             url = "jdbc:mysql://localhost/gTunes"
             driverClassName = "com.mysql.jdbc.Driver"
             username = "root"

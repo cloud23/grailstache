@@ -22,7 +22,10 @@
 			{{#songs}}
 				<span>{{title}}</span>
 				<span>{{artist}}</span>
-				<span>{{duration}}</span><br />
+				<span>{{duration}}</span>
+				<a href="show/{{id}}">show</a>
+				<a href="edit/{{id}}">edit</a>
+				<br />
 			{{/songs}}
 			{{^songs}}
 			  <span>Empty lists</span>

@@ -17,31 +17,36 @@
 			<h1>Edit Song</h1>
 			<div class="message" role="status"></div>
 			<!-- MOVE THIS TO PARTIAL -->
-			<form action="save" method="POST">
+			{{#song}}
+			<form action="../update" method="POST">
+				<input type="hidden" name="id" value="{{id}}">
+				<input type="hidden" name="version" value="{{version}}">
 				<fieldset class="form">
 					<label for="title">
 						Title
 						<span class="required-indicator">*</span>
 					</label>
-					<input type="text" name="title" value="{{title}}">
+					<input type="text" name="title" value="{{title}}" />
 				</fieldset>
 				<fieldset class="form">
 					<label for="artist">
 						Artist
 						<span class="required-indicator">*</span>
 					</label>
-					<input type="text" name="artist" value="{{artist}}">
+					<input type="text" name="artist" value="{{artist}}" />
 				</fieldset>
 				<fieldset class="form">
 					<label for="duration">
 						Duration
 					</label>
-					<input type="text" name="duration" value="{{duration}}">
+					<input type="text" name="duration" value="{{duration}}" />
 				</fieldset>
 				<fieldset class="buttons">
 					<input type="submit" name="create" class="save" value="{{action}}" />
 				</fieldset>
 			</form>
+			{{/song}}
+
 		</div>
 	</body>
 </html>
