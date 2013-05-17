@@ -20,14 +20,14 @@ class SongController {
     params.max = Math.min(max ?: 10, 100)
     //[songInstanceList: Song.list(params), songInstanceTotal: Song.count()]
     def sl = [pageTitle: "Song Lists", songs: Song.list(params)]
-    def template = applicationContext.getResourceByPath("/templates/song/list.mustache")?.getFile() //"Hello {{fullname}}. {{#isLoggedIn}} We're glad you logged in. {{/isLoggedIn}}"
+    def template = applicationContext.getResourceByPath("/templates/song/list.mustache")?.getFile() 
 		String op = compileMustache(sl, new BufferedReader(new FileReader(template)))
 		render op   
   }
 
   def create() {
   	def mod = [action: "Create", song: null]
-    def template = applicationContext.getResourceByPath("/templates/song/create.mustache")?.getFile() //"Hello {{fullname}}. {{#isLoggedIn}} We're glad you logged in. {{/isLoggedIn}}"
+    def template = applicationContext.getResourceByPath("/templates/song/create.mustache")?.getFile() 
 		String op = compileMustache(mod, new BufferedReader(new FileReader(template)))
 		render op
   }
@@ -51,7 +51,7 @@ class SongController {
         return
     }
     def si = [song: songInstance]
-    def template = applicationContext.getResourceByPath("/templates/song/show.mustache")?.getFile() //"Hello {{fullname}}. {{#isLoggedIn}} We're glad you logged in. {{/isLoggedIn}}"
+    def template = applicationContext.getResourceByPath("/templates/song/show.mustache")?.getFile() 
 		String op = compileMustache(si, new BufferedReader(new FileReader(template)))
 		render op
   }
@@ -65,7 +65,7 @@ class SongController {
         return
     }
 
-    def template = applicationContext.getResourceByPath("/templates/song/edit.mustache")?.getFile() //"Hello {{fullname}}. {{#isLoggedIn}} We're glad you logged in. {{/isLoggedIn}}"
+    def template = applicationContext.getResourceByPath("/templates/song/edit.mustache")?.getFile() 
 		String op = compileMustache(mod, new BufferedReader(new FileReader(template)))
 		render op
   }
