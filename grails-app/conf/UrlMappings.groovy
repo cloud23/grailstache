@@ -7,7 +7,11 @@ class UrlMappings {
 			}
 		}
 
-		"/"(view:"/index")
+		//"/"(redirect:"/song/list")
+		"/" {
+	    controller = "song"
+      destination = "/list"
+    }
 		"500"(view:'/error')
 	}
 }

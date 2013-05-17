@@ -13,9 +13,7 @@ class SongController {
 
   def index() {
       //redirect(action: "list", params: params)
-    def template = applicationContext.getResourceByPath("/templates/song/index.mustache")?.getFile() //"Hello {{fullname}}. {{#isLoggedIn}} We're glad you logged in. {{/isLoggedIn}}"
-		String op = compileMustache([fullname: 'efren', isLoggedIn: true], new BufferedReader(new FileReader(template)))
-		render op
+    redirect(action: "list")
   }
 
   def list(Integer max) {
