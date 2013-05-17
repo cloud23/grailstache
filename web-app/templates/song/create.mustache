@@ -7,39 +7,41 @@
 		<link rel="stylesheet" href="/gTunes/static/css/style.css" type="text/css">
 	</head>
 	<body>
+		<div id="header">Welcome to gTunes!</div>
 		<div class="nav" role="navigation">
 			<ul>
-				<li><a class="home" href="/">Home</a></li>
-				<li>Song</li>
+				<li><a class="home" href="/gTunes">Home</a></li>
+				<li>Songs</li>
 			</ul>
 		</div>
-		<div id="create-song" class="content scaffold-create" role="main">
-			<h1>Create a Song</h1>
+		<div id="create-song" class="content-wrap">
+			<h1>Create Song</h1>
 			<div class="message" role="status"></div>
 			<!-- MOVE THIS TO PARTIAL -->
 			<form action="save" method="POST">
 				<fieldset class="form">
-					<label for="title">
+					<label for="title" class="label in-line">
 						Title
 						<span class="required-indicator">*</span>
 					</label>
-					<input type="text" name="title" value="{{title}}">
+					<input type="text" name="title" class="title-col" />
 				</fieldset>
 				<fieldset class="form">
-					<label for="artist">
+					<label for="artist" class="label in-line">
 						Artist
 						<span class="required-indicator">*</span>
 					</label>
-					<input type="text" name="artist" value="{{artist}}">
+					<input type="text" name="artist" class="title-col" />
 				</fieldset>
 				<fieldset class="form">
-					<label for="duration">
+					<label for="duration" class="label in-line">
 						Duration
 					</label>
-					<input type="text" name="duration" value="{{duration}}">
+					<input type="text" name="duration" class="duration-col" />
 				</fieldset>
 				<fieldset class="buttons">
 					<input type="submit" name="create" class="save" value="{{action}}" />
+					<input type="button" name="cancel" class="cancel" value="cancel" onclick="window.location = 'list'" />
 				</fieldset>
 			</form>
 		</div>

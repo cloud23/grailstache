@@ -9,7 +9,7 @@ import java.util.regex.*
 
 class SongController {
 
-  static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+  static allowedMethods = [save: "POST", update: "POST"]
 
   def index() {
       //redirect(action: "list", params: params)
@@ -21,7 +21,7 @@ class SongController {
   def list(Integer max) {
     params.max = Math.min(max ?: 10, 100)
     //[songInstanceList: Song.list(params), songInstanceTotal: Song.count()]
-    def sl = [songs: Song.list(params)]
+    def sl = [pageTitle: "Song Lists", songs: Song.list(params)]
     def template = applicationContext.getResourceByPath("/templates/song/list.mustache")?.getFile() //"Hello {{fullname}}. {{#isLoggedIn}} We're glad you logged in. {{/isLoggedIn}}"
 		String op = compileMustache(sl, new BufferedReader(new FileReader(template)))
 		render op   
@@ -103,22 +103,22 @@ class SongController {
   }
 
   def delete(Long id) {
-      def songInstance = Song.get(id)
-      if (!songInstance) {
-          flash.message = message(code: 'default.not.found.message', args: [message(code: 'song.label', default: 'Song'), id])
-          redirect(action: "list")
-          return
-      }
+    def songInstance = Song.get(id)
+    if (!songInstance) {
+        flash.message = message(code: 'default.not.found.message', args: [message(code: 'song.label', default: 'Song'), id])
+        redirect(action: "list")
+        return
+    }
 
-      try {
-          songInstance.delete(flush: true)
-          flash.message = message(code: 'default.deleted.message', args: [message(code: 'song.label', default: 'Song'), id])
-          redirect(action: "list")
-      }
-      catch (DataIntegrityViolationException e) {
-          flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'song.label', default: 'Song'), id])
-          redirect(action: "show", id: id)
-      }
+    try {
+        songInstance.delete(flush: true)
+        flash.message = message(code: 'default.deleted.message', args: [message(code: 'song.label', default: 'Song'), id])
+        redirect(action: "list")
+    }
+    catch (DataIntegrityViolationException e) {
+        flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'song.label', default: 'Song'), id])
+        redirect(action: "show", id: id)
+    }
   }
 
   private def compileMustache(def model, Reader reader) {

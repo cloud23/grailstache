@@ -3,50 +3,54 @@
 <html>
 	<head>
 		<meta name="layout" content="main">
-		<title>Create Song</title>
+		<title>Edit Song</title>
 		<link rel="stylesheet" href="/gTunes/static/css/style.css" type="text/css">
 	</head>
 	<body>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="/">Home</a></li>
-				<li>Song</li>
-			</ul>
-		</div>
-		<div id="create-song" class="content scaffold-create" role="main">
-			<h1>Edit Song</h1>
-			<div class="message" role="status"></div>
-			<!-- MOVE THIS TO PARTIAL -->
-			{{#song}}
-			<form action="../update" method="POST">
-				<input type="hidden" name="id" value="{{id}}">
-				<input type="hidden" name="version" value="{{version}}">
-				<fieldset class="form">
-					<label for="title">
-						Title
-						<span class="required-indicator">*</span>
-					</label>
-					<input type="text" name="title" value="{{title}}" />
-				</fieldset>
-				<fieldset class="form">
-					<label for="artist">
-						Artist
-						<span class="required-indicator">*</span>
-					</label>
-					<input type="text" name="artist" value="{{artist}}" />
-				</fieldset>
-				<fieldset class="form">
-					<label for="duration">
-						Duration
-					</label>
-					<input type="text" name="duration" value="{{duration}}" />
-				</fieldset>
-				<fieldset class="buttons">
-					<input type="submit" name="create" class="save" value="{{action}}" />
-				</fieldset>
-			</form>
-			{{/song}}
+		<div id="header">Welcome to gTunes!</div>
+		<div class="content">
+			<div class="nav" role="navigation">
+				<ul>
+					<li><a class="home" href="/gTunes">Home</a></li>
+					<li>Songs</li>
+				</ul>
+			</div>
+			<div id="edit-song" class="content-wrap">
+				<h1>Edit Song - {{song.title}}</h1>
+				<div class="message" role="status"></div>
+				<!-- MOVE THIS TO PARTIAL -->
+				{{#song}}
+				<form action="../update" method="POST">
+					<input type="hidden" name="id" value="{{id}}">
+					<input type="hidden" name="version" value="{{version}}">
+					<fieldset class="form">
+						<label for="title" class="label in-line">
+							Title
+							<span class="required-indicator">*</span>
+						</label>
+						<input type="text" name="title" class="title-col" value="{{title}}" />
+					</fieldset>
+					<fieldset class="form">
+						<label for="artist" class="label in-line">
+							Artist
+							<span class="required-indicator">*</span>
+						</label>
+						<input type="text" name="artist" class="title-col" value="{{artist}}" />
+					</fieldset>
+					<fieldset class="form">
+						<label for="duration" class="label in-line">
+							Duration
+						</label>
+						<input type="text" name="duration" class="duration-col" value="{{duration}}" />
+					</fieldset>
+					<fieldset class="buttons">
+						<input type="submit" name="create" class="save" value="{{action}}" />
+						<input type="button" name="cancel" class="cancel" value="cancel" onclick="window.location = 'list'" />
+					</fieldset>
+				</form>
+				{{/song}}
 
+			</div>
 		</div>
 	</body>
 </html>

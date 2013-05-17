@@ -7,30 +7,39 @@
 		<link rel="stylesheet" href="/gTunes/static/css/style.css" type="text/css">
 	</head>
 	<body>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="/">Home</a></li>
-				<li>Song</li>
-			</ul>
-		</div>
-		<div id="create-song" class="content scaffold-create" role="main">
-			<h1>Song Details</h1>
-			<div class="message" role="status"></div>
-			<span>Title</span>
-			<span>Artist</span>
-			<span>Duration</span><br />
-			{{#songs}}
-				<span>{{title}}</span>
-				<span>{{artist}}</span>
-				<span>{{duration}}</span>
-				<a href="show/{{id}}">show</a>
-				<a href="edit/{{id}}">edit</a>
-				<br />
-			{{/songs}}
-			{{^songs}}
-			  <span>Empty lists</span>
-			{{/songs}}
-			<a href="create">Add a new song</a>
+		<div id="header">Welcome to gTunes!</div>
+		<div class="content">
+			<div class="nav">
+				<ul>
+					<li><a class="home" href="/gTunes">Home</a></li>
+					<li>Songs</li>
+				</ul>
+			</div>
+			<div id="song_list" class="content-wrap">
+				<h1>{{pageTitle}}</h1>
+				<div class="message" role="status"></div>
+				<span class="label col-header title-col">Title</span>
+				<span class="label col-header artist-col">Artist</span>
+				<span class="label col-header duration-col">Duration</span>
+				<span class="label col-header show-col">show</span>
+				<span class="label col-header edit-col">edit</span>
+				<span class="label col-header del-col">delete</span><br />
+				{{#songs}}
+				<div class="row">
+					<span class="title-col">{{title}}</span>
+					<span class="artist-col">{{artist}}</span>
+					<span class="duration-col align-right">{{duration}} mins</span>
+					<a class="show-col" href="show/{{id}}">show</a>
+					<a class="edit-col" href="edit/{{id}}">edit</a>
+					<a class="del-col" href="delete/{{id}}">del</a>
+				</div>
+				{{/songs}}
+				{{^songs}}
+				  <span>Empty lists</span>
+				{{/songs}}
+				<br /><br />
+				<a href="create">Add a new song</a>
+			</div>
 		</div>
 	</body>
 </html>

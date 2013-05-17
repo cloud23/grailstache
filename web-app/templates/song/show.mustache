@@ -3,30 +3,39 @@
 <html>
 	<head>
 		<meta name="layout" content="main">
-		<title>Create Song</title>
+		<title>Song Info</title>
 		<link rel="stylesheet" href="/gTunes/static/css/style.css" type="text/css">
 	</head>
 	<body>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="/">Home</a></li>
-				<li>Song</li>
-			</ul>
-		</div>
-		<div id="create-song" class="content scaffold-create" role="main">
-			<h1>Song Details</h1>
-			<div class="message" role="status"></div>
-			{{#song}}
-				<span>Title</span>
-				<span>{{title}}</span><br />
-				<span>Artist: </span>
-				<span>{{artist}}</span><br />
-				<span>Duration</span>
-				<span>{{duration}}</span><br />
-			{{/song}}
-			
-			<a href="../create">Add a new song</a>
-			<a href="../list">Go to song list</a>
+		<div id="header">Welcome to gTunes!</div>
+		<div class="content">
+			<div class="nav" role="navigation">
+				<ul>
+					<li><a class="home" href="/">Home</a></li>
+					<li>Song</li>
+				</ul>
+			</div>
+			<div id="show-song" class="content-wrap">
+				<h1>Song Info - {{song.title}}</h1>
+				<div class="message" role="status"></div>
+				{{#song}}
+					<div class="row">
+						<span class="label in-line">Title:</span>
+						<span>{{title}}</span>
+					</div>
+					<div class="row">
+						<span class="label in-line">Artist: </span>
+						<span>{{artist}}</span>
+					</div>
+					<div class="row">
+						<span class="label in-line">Duration:</span>
+						<span>{{duration}}</span>
+					</div>
+				{{/song}}
+				<br /><br />
+				<input type="button" onclick="window.location = '../create'" value="Add a song">
+				<input type="button" onclick="window.location = '../list'" value="Go to list">
+			</div>
 		</div>
 	</body>
 </html>
